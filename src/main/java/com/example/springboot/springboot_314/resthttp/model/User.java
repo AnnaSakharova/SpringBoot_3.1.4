@@ -1,12 +1,17 @@
 package com.example.springboot.springboot_314.resthttp.model;
 
 public class User {
+
     private Long id;
+
     private String name;
+
     private String lastName;
+
     private Byte age;
 
     public User() {
+
     }
 
     public User(Long id, String name, String lastName, Byte age) {
