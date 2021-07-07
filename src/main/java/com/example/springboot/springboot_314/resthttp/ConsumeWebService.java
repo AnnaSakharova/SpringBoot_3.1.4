@@ -16,13 +16,13 @@ public class ConsumeWebService {
         User newUser = new User(3L, "James", "Brown", (byte) 33);
         RestTemplate restTemplate = new RestTemplate();
 
-        /*GET USERS*/
+        // GET USERS
         ResponseEntity<User[]> response = restTemplate.getForEntity(URL_USERS, User[].class);
         User[] users = response.getBody();
         HttpHeaders getHeaders = response.getHeaders();
         JSESSIONID = getHeaders.getFirst(HttpHeaders.SET_COOKIE);
 
-        /*POST USER*/
+        // POST USER
         HttpHeaders headers = new HttpHeaders();
         //headers.add(HttpHeaders.SET_COOKIE, JSESSIONID);
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -31,17 +31,17 @@ public class ConsumeWebService {
         ResponseEntity<String> result = restTemplate.exchange(URL_USERS, HttpMethod.POST, requestBody, String.class);
         finalCode = (String) result.getBody();
 
-        /*PUT USER*/
+        // PUT USER
         newUser.setName("Thomas");
         newUser.setLastName("Shelby");
         ResponseEntity<String> responsePut = restTemplate.exchange(URL_USERS, HttpMethod.PUT, requestBody, String.class);
         finalCode += (String) responsePut.getBody();
 
-        /*DELETE USER*/
+        // DELETE USER
         ResponseEntity<String> responseDel = restTemplate.exchange(URL_USERS + "/3", HttpMethod.DELETE, requestBody, String.class);
         finalCode += (String) responseDel.getBody();
 
-        /*RESULT*/
+        // RESULT
         System.out.println(finalCode);
 
     }
